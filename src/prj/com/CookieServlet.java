@@ -31,21 +31,38 @@ public class CookieServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub 12
+		// TODO Auto-generated method stub 13
 		response.setContentType("text/html");
 		
-		String cookieVal = request.getParameter("cookievalue");
-		
-		Cookie cookie = new Cookie(request.getParameter("cookiename"),cookieVal);
-		// cookie.setMaxAge(2*60); 
-		response.addCookie(cookie);
+		String cookieVal = "None";
+		String cookiename = "None";
+		try
+		{
+			cookieVal = request.getParameter("cookievalue");
+			cookiename = request.getParameter("cookiename");
+			
+			Cookie cookie = new Cookie(cookiename,cookieVal);
+			// cookie.setMaxAge(2*60); 
+			response.addCookie(cookie);
+			
+			if (cookiename.equals("redirect"))
+			{
+				response.sendRedirect(cookieVal);
+				return;
+			}
+		}
+		catch (Exception e)
+		{
+		}
+
+
 		
 		// Actual logic goes here.
 		PrintWriter out = response.getWriter();
 		out.println("<html><body>");
 		out.println("<form action=/CookieLab/CookieServlet method=POST>");
 		
-		out.println(request.getParameter("cookievalue"));
+		out.println(cookieVal);
 		out.println("Cookie name: <input type='text' name=cookiename><br>"
 				+ "Cookie value: <textarea rows=4 columns=50 name=cookievalue></textarea><br>"
 				+ "<input type='submit' value = 'Submit'>"
