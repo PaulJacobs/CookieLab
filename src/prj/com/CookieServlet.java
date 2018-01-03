@@ -31,7 +31,7 @@ public class CookieServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub 13
+		// TODO Auto-generated method stub 14
 		response.setContentType("text/html");
 		
 		String cookieVal = "None";
